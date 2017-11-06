@@ -1,0 +1,14 @@
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\bin\Debug\Lab6Eget.exe.config
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\bin\Debug\Lab6Eget.exe
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\bin\Debug\Lab6Eget.pdb
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\Lab6Eget.csprojResolveAssemblyReference.cache
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\MainWindow.g.cs
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\App.g.cs
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\Lab6Eget_MarkupCompile.cache
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\Lab6Eget_MarkupCompile.lref
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\MainWindow.baml
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\Lab6Eget.g.resources
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\Lab6Eget.Properties.Resources.resources
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\Lab6Eget.csproj.GenerateResource.Cache
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\Lab6Eget.exe
+C:\Users\Tobias\Documents\Visual Studio 2017\Projects\ITHS\Lab6Eget\Lab6Eget\obj\Debug\Lab6Eget.pdb
