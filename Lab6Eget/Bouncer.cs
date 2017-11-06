@@ -10,7 +10,13 @@ namespace Lab6Eget
 {
     public class Bouncer
     {
+        MainWindow mw;
+        public Bouncer(MainWindow mainwindow)
+        {
+            mw = mainwindow;
+        }
 
+    //    public void Bouncer(MainWindow mainwindow) { }
         public event Action<string> Arrival;
         public event Action<Patron> OrderABear;
         public int personCount = 0;

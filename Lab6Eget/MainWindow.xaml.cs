@@ -22,7 +22,7 @@ namespace Lab6Eget
     {
         DispatcherTimer timer;
         DateTime start;
-        Bouncer bouncer = new Bouncer();
+        
         Glases glases = new Glases(8,0);
         public int indexOrder;
         public static CancellationTokenSource cts = new CancellationTokenSource();
@@ -31,7 +31,6 @@ namespace Lab6Eget
 
         public int emptyChairs = 9;
         public int PatronsInThePub = 0;
-        public Bouncer bert = new Bouncer();
         public bool openBar = false;
         public Patron guest = new Patron();
         public ConcurrentQueue<Patron> BartenderQueue = new ConcurrentQueue<Patron>();
@@ -92,7 +91,7 @@ namespace Lab6Eget
         private void OpeningBar(object sender, RoutedEventArgs e)
         {
 
-
+            Bouncer bouncer = new Bouncer(this);
 
 
             if (openBar == false)
