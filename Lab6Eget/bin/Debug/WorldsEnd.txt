@@ -11,20 +11,3 @@
 12_ (4) Daniel arrives at the pub
 13_ (4) Daniel orders a beer
 14_ Gives beer to (4) Daniel
-17_ (5) Beatrice arrives at the pub
-18 Waitress picks up 1, glas(es).
-19_ (5) Beatrice orders a beer
-22_ (6) Erik arrives at the pub
-23_ Gives beer to (5) Beatrice
-24_ (6) Erik orders a beer
-25 Leaving Washed glas on shelf.
-28_ (7) Klara arrives at the pub
-29_ Gives beer to (6) Erik
-30_ (7) Klara orders a beer
-31 Waitress picks up 2, glas(es).
-34_ (8) Michel arrives at the pub
-35_ Gives beer to (7) Klara
-36_ (8) Michel orders a beer
-38 Leaving Washed glas on shelf.
-40_ Gives beer to (8) Michel
-41_ (9) David arrives at the pub

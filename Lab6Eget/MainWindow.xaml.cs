@@ -33,6 +33,7 @@ namespace Lab6Eget
         public bool openBar = false;
         public Patron guest = new Patron();
         public ConcurrentQueue<Patron> BartenderQueue = new ConcurrentQueue<Patron>();
+        public ConcurrentQueue<Patron> ChairQueue = new ConcurrentQueue<Patron>();
 
         public MainWindow()
 
@@ -62,7 +63,7 @@ namespace Lab6Eget
                 BartenderListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " orders a beer");
                 System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ " + patron.patronName + " orders a beer");
             });
-            patron.LookingForTable(chairs, patron, glases);
+            patron.LookingForTable(chairs, patron, glases, ChairQueue);
         }
 
         //

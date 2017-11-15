@@ -18,22 +18,27 @@ namespace Lab6Eget
         {
             OrderABear?.Invoke(patron);
         }
-        public void LookingForTable(Chairs chair, Patron patron, Glases glases)
+        public void LookingForTable(Chairs chair, Patron patron, Glases glases, ConcurrentQueue<Patron> chairQueue)
         {
             Thread.Sleep(10000);
 
-            if (chair.NumberOfEmptyChairs > 0)
+            while (true)
             {
-                // Behöver stolkö
+                chairQueue.Enqueue(patron);
+                chairQueue.TryPeek(out Patron tester);
+                if (chair.NumberOfEmptyChairs > 0 && patron.patronName == tester.patronName) ;
+                {
+                    // Behöver stolkö
 
-                chair.NumberOfEmptyChairs--;
-                DrinkingBeer?.Invoke(patron);
-                // drinks beer
-                Thread.Sleep(5000);
-                glases.NumberOfEmptyGlases++;
-                LeavingThePub?.Invoke(patron);
-                
-                
+                    chair.NumberOfEmptyChairs--;
+                    DrinkingBeer?.Invoke(patron);
+                    // drinks beer
+                    Thread.Sleep(5000);
+                    glases.NumberOfEmptyGlases++;
+                    chairQueue.TryDequeue(out patron);
+                    LeavingThePub?.Invoke(patron);
+
+                }
             }
         }
 

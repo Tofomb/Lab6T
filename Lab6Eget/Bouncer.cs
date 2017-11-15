@@ -14,6 +14,7 @@ namespace Lab6Eget
         public Bouncer(MainWindow mainwindow)
         {
             mw = mainwindow;
+            
         }
 
     //    public void Bouncer(MainWindow mainwindow) { }
