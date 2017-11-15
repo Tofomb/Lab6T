@@ -79,12 +79,15 @@ namespace Lab6Eget
         public void LeavingPub(Patron patron)
         {
             indexOrder++;
+            PatronsInThePub--;
+            chairs.NumberOfEmptyChairs++;
             Dispatcher.Invoke(() =>
             {
                 BouncerListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " Leaves the Pub.");
                 ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
+                GuestLabel.Content = GuestLabel.Content = $"Guest in the pub: {PatronsInThePub.ToString()}";
             });
-            chairs.NumberOfEmptyChairs++;
+            
         }
 
         private void timer_Tick(object sender, EventArgs e)

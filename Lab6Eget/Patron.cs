@@ -24,6 +24,8 @@ namespace Lab6Eget
 
             if (chair.NumberOfEmptyChairs > 0)
             {
+                // Behöver stolkö
+
                 chair.NumberOfEmptyChairs--;
                 DrinkingBeer?.Invoke(patron);
                 // drinks beer
