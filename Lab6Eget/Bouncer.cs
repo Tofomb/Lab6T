@@ -18,8 +18,9 @@ namespace Lab6Eget
 
     //    public void Bouncer(MainWindow mainwindow) { }
         public event Action<string> Arrival;
-        public event Action<Patron> OrderABear;
+    //    public event Action<Patron> OrderABear;
         public int personCount = 0;
+        public int HiddenCounter;
         public string GetRandomName()
 
         {
@@ -39,12 +40,13 @@ namespace Lab6Eget
 
             int index = personCount;
             personCount++;
+            HiddenCounter++;
             if (personCount >= namn.Count)
             {
                 personCount = 0;
             }
             //int index = r.Next(0, namn.Count);
-            return namn[index];
+            return "(" + HiddenCounter +  ")" + " " + namn[index];
         }
 
         public void Work()
@@ -61,14 +63,20 @@ namespace Lab6Eget
 
         public void EnteringBar()
         {
-            var patron = new Patron();
+            
+            Patron patron = new Patron();
+            patron.LeavingThePub += mw.LeavingPub;
+            patron.OrderABear += mw.BartenderInteraction;
+            patron.DrinkingBeer += mw.SittingAndDrinking;
             patron.patronName = GetRandomName();
-
             Arrival?.Invoke(patron.patronName);
-            Thread.Sleep(2000);
-            OrderABear?.Invoke(patron);
-            //Patron börjar jobba
-            patron.patronAct();
+            Task BeingPatron = Task.Run(() => 
+            {
+                Thread.Sleep(2000);
+                patron.patronAct(patron);
+            });
+
+
         }
 
     }

@@ -1,8 +1,14 @@
-﻿namespace Lab6Eget
+﻿
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
+
+namespace Lab6Eget
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public class Glases
     {
         public int NumberOfGlasesOnShelf;

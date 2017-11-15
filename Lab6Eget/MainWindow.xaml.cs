@@ -22,20 +22,21 @@ namespace Lab6Eget
     {
         DispatcherTimer timer;
         DateTime start;
-        
-        Glases glases = new Glases(8,0);
+
+        Glases glases = new Glases(8, 0);
         public int indexOrder;
         public static CancellationTokenSource cts = new CancellationTokenSource();
         public CancellationToken ct = cts.Token;
         //public int glasOnShelf = 8;
 
-        public int emptyChairs = 9;
+
+
+        Chairs chairs = new Chairs(9);
         public int PatronsInThePub = 0;
         public bool openBar = false;
         public Patron guest = new Patron();
         public ConcurrentQueue<Patron> BartenderQueue = new ConcurrentQueue<Patron>();
 
-        public event Action<int> WaitingForBeer;
 
 
         public MainWindow()
@@ -65,10 +66,28 @@ namespace Lab6Eget
                 BartenderQueue.Enqueue(patron);
                 BartenderListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " orders a beer");
                 System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ " + patron.patronName + " orders a beer");
-              
 
             });
+            patron.LookingForTable(chairs, patron, glases);
 
+        }
+        public void SittingAndDrinking(Patron patron)
+        {
+            indexOrder++;
+            Dispatcher.Invoke(() =>
+            {
+                BouncerListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " drinks a cold beer.");
+                ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
+            });
+        }
+        public void LeavingPub(Patron patron)
+        {
+            indexOrder++;
+            Dispatcher.Invoke(() =>
+            {
+                BouncerListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " Leavs the Pub.");
+                ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
+            });
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -78,10 +97,9 @@ namespace Lab6Eget
 
         private void LoadMainFrame(object sender, RoutedEventArgs e)
         {
-           // glases.NumberOfGlasesOnShelf = 8;
-          //  GlasLable.Content = $"Glas on the shelf: {glasOnShelf.ToString()}";
-          GlasLable.Content = $"Glas on the shelf: {glases.NumberOfGlasesOnShelf.ToString()}";
-            ChairLabel.Content = $"Empty Chairs: {emptyChairs.ToString()}";
+
+            GlasLable.Content = $"Glas on the shelf: {glases.NumberOfGlasesOnShelf.ToString()}";
+            ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
             GuestLabel.Content = $"Guest in the pub: {PatronsInThePub.ToString()}";
             BartenderQueue.TryDequeue(out Patron m);
 
@@ -99,7 +117,7 @@ namespace Lab6Eget
                 indexOrder++;
                 BouncerListBox.Items.Insert(0, indexOrder + "_ Worlds End Opens!");
                 System.IO.File.WriteAllText(@"WorldsEnd.txt", indexOrder + "_ Worlds End Opens!");
-                
+
                 // clock
 
 
@@ -117,12 +135,12 @@ namespace Lab6Eget
                 Task enter = Task.Run(() =>
                 {
 
-                   // Dispatcher.Invoke(() =>
-                     //           {
-                                    bouncer.Arrival += PersonNameToPub;
-                                    bouncer.OrderABear += BartenderInteraction;
+                    // Dispatcher.Invoke(() =>
+                    //           {
+                    bouncer.Arrival += PersonNameToPub;
+                    //bouncer.OrderABear += BartenderInteraction;
 
-                //                });
+                    //                });
                     while (!ct.IsCancellationRequested)
                     {
                         bouncer.Work();
@@ -157,24 +175,24 @@ namespace Lab6Eget
         private void TakingCleanGlas(int obj)
         {
 
-                if (BartenderQueue.IsEmpty == false)
+            if (BartenderQueue.IsEmpty == false)
+            {
+                //     if (glasOnShelf > 0)
+                if (glases.NumberOfGlasesOnShelf > 0)
                 {
-               //     if (glasOnShelf > 0)
-               if (glases.NumberOfGlasesOnShelf > 0)
+                    Dispatcher.Invoke(() =>
                     {
-                        Dispatcher.Invoke(() =>
-                        {
-                            glases.NumberOfGlasesOnShelf--;
+                        glases.NumberOfGlasesOnShelf--;
                             //glasOnShelf--;
                             indexOrder++;
-                            BartenderQueue.TryDequeue(out Patron T);                       
-                         //  GlasLable.Content = $"Glas on the shelf: {glasOnShelf.ToString()}";
-                           GlasLable.Content = $"Glas on the shelf: {glases.NumberOfGlasesOnShelf.ToString()}";
+                        BartenderQueue.TryDequeue(out Patron T);
+                            //  GlasLable.Content = $"Glas on the shelf: {glasOnShelf.ToString()}";
+                            GlasLable.Content = $"Glas on the shelf: {glases.NumberOfGlasesOnShelf.ToString()}";
 
-                            BartenderListBox.Items.Insert(0, indexOrder + "_ Gives beer to " + T.patronName);
-                            System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ Gives beer to " + T.patronName);
-                        });
-                    
+                        BartenderListBox.Items.Insert(0, indexOrder + "_ Gives beer to " + T.patronName);
+                        System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ Gives beer to " + T.patronName);
+                    });
+
                 }
             }
         }

@@ -1,6 +1,16 @@
 1_ Worlds End Opens!
-2_ Jonas arrives at the pub
-3_ Jonas orders a beer
-4_ Anders arrives at the pub
-5_ Gives beer to Jonas
-6_ Anders orders a beer
+2_ (1) Jonas arrives at the pub
+3_ (1) Jonas orders a beer
+4_ (2) Anders arrives at the pub
+5_ (2) Anders orders a beer
+6_ Gives beer to (1) Jonas
+7_ (3) Johanna arrives at the pub
+8_ (3) Johanna orders a beer
+9_ Gives beer to (2) Anders
+10_ Gives beer to (3) Johanna
+12_ (4) Daniel arrives at the pub
+13_ (4) Daniel orders a beer
+14_ Gives beer to (4) Daniel
+17_ (5) Beatrice arrives at the pub
+18_ (5) Beatrice orders a beer
+21_ (6) Erik arrives at the pub

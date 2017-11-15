@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Bartender.cs" />
     <Compile Include="Bouncer.cs" />
+    <Compile Include="Chairs.cs" />
     <Compile Include="Glases.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
