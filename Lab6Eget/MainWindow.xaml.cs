@@ -141,13 +141,10 @@ namespace Lab6Eget
             Task working = Task.Run(() =>
             {
                 Bartender bartender = new Bartender();
+                bartender.LookingForCleanGlas += TakingCleanGlas;
                 while (true)
                 {
                     bartender.Work();
-                    Dispatcher.Invoke(() =>
-                    {
-                        bartender.LookingForCleanGlas += TakingCleanGlas;
-                    });
                 }
             });
 
