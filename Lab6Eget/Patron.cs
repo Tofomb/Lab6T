@@ -14,12 +14,9 @@ namespace Lab6Eget
         public event Action<Patron> DrinkingBeer;
         public string patronName { get; set; }
 
-
         public void patronAct(Patron patron)
         {
-
             OrderABear?.Invoke(patron);
-
         }
         public void LookingForTable(Chairs chair, Patron patron, Glases glases)
         {
