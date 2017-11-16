@@ -14,7 +14,7 @@ namespace Lab6Eget
             LookingForGlas(0);
         }
 
-        private void LookingForGlas(int obj)
+        private void LookingForGlas(int ob)
         {
             Thread.Sleep(4000);
             LookingForCleanGlas?.Invoke(0);

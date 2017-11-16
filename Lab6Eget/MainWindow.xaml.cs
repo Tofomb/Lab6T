@@ -23,17 +23,20 @@ namespace Lab6Eget
         DispatcherTimer timer;
         DateTime start;
 
+        //
+        public event Action<Chairs, Patron, Glases, ConcurrentQueue<Patron>> FindingEmptyChair;
+        //
         Glases glases = new Glases(8, 0);
         public int indexOrder;
         public static CancellationTokenSource cts = new CancellationTokenSource();
         public CancellationToken ct = cts.Token;
-        //public int glasOnShelf = 8;
-        Chairs chairs = new Chairs(9);
+        Chairs chairs = new Chairs(3);
         public int PatronsInThePub = 0;
         public bool openBar = false;
         public Patron guest = new Patron();
         public ConcurrentQueue<Patron> BartenderQueue = new ConcurrentQueue<Patron>();
         public ConcurrentQueue<Patron> ChairQueue = new ConcurrentQueue<Patron>();
+
 
         public MainWindow()
 
@@ -62,11 +65,27 @@ namespace Lab6Eget
                 BartenderQueue.Enqueue(patron);
                 BartenderListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " orders a beer");
                 System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ " + patron.patronName + " orders a beer");
+
             });
-            patron.LookingForTable(chairs, patron, glases, ChairQueue);
+
+            //
+            ChairQueue.TryPeek(out Patron tester);
+
+            /*           if (tester != null)
+                       {
+                           do
+                           {*/
+            ChairQueue.Enqueue(patron);
+            FindingEmptyChair?.Invoke(chairs, patron, glases, ChairQueue);
+                    // patron.LookingForTable(chairs, patron, glases, ChairQueue);
+           /*     }
+                while (tester.patronName != patron.patronName);
+            }
+            else { ChairQueue.TryDequeue(out Patron skräp); }
+            */
         }
 
-        //
+
         public void SittingAndDrinking(Patron patron)
         {
             indexOrder++;
@@ -82,13 +101,16 @@ namespace Lab6Eget
             indexOrder++;
             PatronsInThePub--;
             chairs.NumberOfEmptyChairs++;
+            //
+
+            //
             Dispatcher.Invoke(() =>
             {
                 BouncerListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " Leaves the Pub.");
                 ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
                 GuestLabel.Content = GuestLabel.Content = $"Guest in the pub: {PatronsInThePub.ToString()}";
             });
-            
+
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -123,15 +145,20 @@ namespace Lab6Eget
 
                 Task enter = Task.Run(() =>
                 {
-                    // Dispatcher.Invoke(() =>
-                    //           {
+
                     bouncer.Arrival += PersonNameToPub;
-                    //bouncer.OrderABear += BartenderInteraction;
-                    //                });
+
                     while (!ct.IsCancellationRequested)
                     {
                         bouncer.Work();
                     }
+
+                    // When closing Bouncer
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        BouncerListBox.Items.Insert(0, "Bouncer Goes Home.");
+                    });
                 });
             }
             else

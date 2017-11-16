@@ -14,7 +14,7 @@ namespace Lab6Eget
         public int NumberOfGlasesInTheHand = 0;
         public void Waitering(Glases glases)
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(10000);
             if(glases.NumberOfEmptyGlases > 0)
             {
                 while (glases.NumberOfEmptyGlases > 0)
@@ -25,7 +25,7 @@ namespace Lab6Eget
 
                 WaitingTable();
 
-                Thread.Sleep(5000);
+                Thread.Sleep(10000);
                 while (NumberOfGlasesInTheHand > 0)
                 {
                     NumberOfGlasesInTheHand--;

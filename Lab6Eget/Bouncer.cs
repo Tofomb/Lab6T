@@ -11,21 +11,24 @@ namespace Lab6Eget
     public class Bouncer
     {
         MainWindow mw;
+
         public Bouncer(MainWindow mainwindow)
         {
             mw = mainwindow;
-            
+
         }
 
-    //    public void Bouncer(MainWindow mainwindow) { }
+        //    public void Bouncer(MainWindow mainwindow) { }
         public event Action<string> Arrival;
-    //    public event Action<Patron> OrderABear;
+        public event Action<Chairs, Patron, Glases, ConcurrentQueue<Patron>> FindingEmptyChair;
+        //    public event Action<Patron> OrderABear;
         public int personCount = 0;
         public int HiddenCounter;
+        public Random r = new Random();
         public string GetRandomName()
 
+
         {
-            Random r = new Random();
             List<string> namn = new List<string>();
             namn.Add("Jonas");
             namn.Add("Anders");
@@ -46,39 +49,43 @@ namespace Lab6Eget
             {
                 personCount = 0;
             }
-            //int index = r.Next(0, namn.Count);
-            return "(" + HiddenCounter +  ")" + " " + namn[index];
+            
+            return "(" + HiddenCounter + ")" + " " + namn[index];
         }
 
         public void Work()
         {
-            //Task enter = Task.Run(() =>
-          //  {
-             //   while (true)
-              //  {
-                    EnteringBar();
-                    Thread.Sleep(4500);
-              //  }
-          //  });
+            int checkingLeg = r.Next(3000, 10000);
+            Thread.Sleep(2000);
+            EnteringBar();
         }
 
         public void EnteringBar()
         {
-            
+
             Patron patron = new Patron();
             patron.LeavingThePub += mw.LeavingPub;
-            patron.OrderABear += mw.BartenderInteraction;
+            patron.OrderABeer += mw.BartenderInteraction;
             patron.DrinkingBeer += mw.SittingAndDrinking;
             patron.patronName = GetRandomName();
             Arrival?.Invoke(patron.patronName);
-            Task BeingPatron = Task.Run(() => 
+            Task BeingPatron = Task.Run(() =>
             {
                 Thread.Sleep(2000);
+                //
+                mw.FindingEmptyChair += patron.LookingForTable;
+               
+
+                //
                 patron.patronAct(patron);
+
+                
             });
 
 
+
         }
+
 
     }
 }
