@@ -6,7 +6,7 @@ using System;
 
 namespace Lab6Eget
 {
-    
+
     public class Waitress
     {
         public event Action<int> LookingForDirtyGlas;
@@ -15,28 +15,27 @@ namespace Lab6Eget
 
         public void Waitering(Glases glases)
         {
-            while (true)
+
+
+            if (glases.NumberOfEmptyGlases > 0)
             {
-                Thread.Sleep(2000);
-                if (glases.NumberOfEmptyGlases > 0)
+                while (glases.NumberOfEmptyGlases > 0)
                 {
-                    while (glases.NumberOfEmptyGlases > 0)
-                    {
-                        glases.NumberOfEmptyGlases--;
-                        NumberOfGlasesInTheHand++;
-                    }
-
-                    LookingForDirtyGlas?.Invoke(NumberOfGlasesInTheHand);
-                    //   WaitingTable();
-
-                    Thread.Sleep(2000);
-                    while (NumberOfGlasesInTheHand > 0)
-                    {
-                        NumberOfGlasesInTheHand--;
-                        glases.NumberOfGlasesOnShelf++;
-                    }
-                    LeavingCleanGlas?.Invoke(0);
+                    glases.NumberOfEmptyGlases--;
+                    NumberOfGlasesInTheHand++;
                 }
+
+                LookingForDirtyGlas?.Invoke(NumberOfGlasesInTheHand);
+                Thread.Sleep(2000);
+
+                //   WaitingTable();
+                while (NumberOfGlasesInTheHand > 0)
+                {
+                    NumberOfGlasesInTheHand--;
+                    glases.NumberOfGlasesOnShelf++;
+                }
+                LeavingCleanGlas?.Invoke(0);
+                Thread.Sleep(2000);
             }
         }
         public void WaitingTable()

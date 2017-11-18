@@ -1,37 +1,31 @@
 1_ Worlds End Opens!
 2_ (1) Jonas arrives at the pub
 3_ (2) Anders arrives at the pub
-5_ (1) Jonas orders a beer
-5_ Gives beer to (1) Jonas
-7_ (3) Johanna arrives at the pub
-7_ (2) Anders orders a beer
-9_ (3) Johanna orders a beer
-10_ (4) Daniel arrives at the pub
-10_ Gives beer to (2) Anders
-12_ (4) Daniel orders a beer
-13_ (5) Beatrice arrives at the pub
-15_ Gives beer to (3) Johanna
-16_ (5) Beatrice orders a beer
-17_ (6) Erik arrives at the pub
-19_ (6) Erik orders a beer
-20_ (7) Klara arrives at the pub
+4_ (1) Jonas orders a beer
+5_ (3) Johanna arrives at the pub
+6_ Gives beer to (1) Jonas
+7_ (4) Daniel arrives at the pub
+8_ (2) Anders orders a beer
+10_ (5) Beatrice arrives at the pub
+11_ (3) Johanna orders a beer
+12_ Gives beer to (2) Anders
+13_ (6) Erik arrives at the pub
+15_ (4) Daniel orders a beer
+17_ (5) Beatrice orders a beer
+18_ (6) Erik orders a beer
+19_ Gives beer to (3) Johanna
 21_ Gives beer to (4) Daniel
-22_ (7) Klara orders a beer
-23_ (8) Michel arrives at the pub
-24_ (8) Michel orders a beer
-25_ Gives beer to (5) Beatrice
-26_ Gives beer to (6) Erik
-27_ Gives beer to (7) Klara
-28_ Gives beer to (8) Michel
-32 Waitress picks up 2, glas(es).
-34 Leaving Washed glas on shelf.
-37 Waitress picks up 1, glas(es).
-38 Leaving Washed glas on shelf.
-41 Waitress picks up 2, glas(es).
+23 Waitress picks up 1, glas(es).
+24_ Gives beer to (5) Beatrice
+25 Leaving Washed glas on shelf.
+27 Waitress picks up 1, glas(es).
+28_ Gives beer to (6) Erik
+33 Leaving Washed glas on shelf.
+34 Waitress picks up 1, glas(es).
+35 Leaving Washed glas on shelf.
+38 Waitress picks up 1, glas(es).
+39 Leaving Washed glas on shelf.
+41 Waitress picks up 1, glas(es).
 42 Leaving Washed glas on shelf.
-46 Waitress picks up 1, glas(es).
-47 Leaving Washed glas on shelf.
-49 Waitress picks up 1, glas(es).
-50 Leaving Washed glas on shelf.
-52 Waitress picks up 1, glas(es).
-53 Leaving Washed glas on shelf.
+44 Waitress picks up 1, glas(es).
+45 Leaving Washed glas on shelf.

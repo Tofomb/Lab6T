@@ -89,9 +89,7 @@ namespace Lab6Eget
             indexOrder++;
             PatronsInThePub--;
             chairs.NumberOfEmptyChairs++;
-            //
 
-            //
             Dispatcher.Invoke(() =>
             {
                 BouncerListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " Leaves the Pub.");
@@ -122,6 +120,7 @@ namespace Lab6Eget
                 indexOrder++;
                 BouncerListBox.Items.Insert(0, indexOrder + "_ Worlds End Opens!");
                 System.IO.File.WriteAllText(@"WorldsEnd.txt", indexOrder + "_ Worlds End Opens!");
+
                 // clock
                 timer = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 0),
                                             DispatcherPriority.Background,
@@ -142,10 +141,10 @@ namespace Lab6Eget
                     }
 
                     // When closing Bouncer
-
                     Dispatcher.Invoke(() =>
                     {
-                        BouncerListBox.Items.Insert(0, "Bouncer Goes Home.");
+                        indexOrder++;
+                        BouncerListBox.Items.Insert(0, indexOrder + "_ Bouncer Goes Home.");
                     });
                 });
             }
@@ -155,32 +154,48 @@ namespace Lab6Eget
                 timer.IsEnabled = false;
                 openBar = false;
                 OpenBarButton.Content = "Open";
+                OpenBarButton.IsEnabled = false;
 
             }
-            Task working = Task.Run(() =>
+            if (openBar == true)
             {
                 Bartender bartender = new Bartender();
-                bartender.LookingForCleanGlas += TakingCleanGlas;
-                while (true)
+                Task working = Task.Run(() =>
                 {
-                    bartender.Work();
-                }
-            });
-            if (openBar == false)
+                    bartender.LookingForCleanGlas += TakingCleanGlas;
+                    do
+                    {
+                        bartender.Work();
+                    }
+                    while (!BartenderQueue.IsEmpty || openBar == true);
+                    Dispatcher.Invoke(() =>
+                    {
+                        indexOrder++;
+                        BartenderListBox.Items.Insert(0, indexOrder + "_ Bartender goes home");
+                    });
+                });
+            }
+            if (openBar == true)
             {
                 Waitress waitress = new Waitress();
+
                 Task WorkingWaitress = Task.Run(() =>
                 {
-                    waitress.LeavingCleanGlas += LeavingGlasesOnShelf;
-                    waitress.LookingForDirtyGlas += PickingUpDirtyGlases;
-                    //    while (true)
-                    //  {
-                    waitress.Waitering(glases);
-                    //   }
+                    waitress.LeavingCleanGlas += WriteLeavingGlasesOnShelf;
+                    waitress.LookingForDirtyGlas += WritePickingUpDirtyGlases;
+                    do
+                    {
+                        waitress.Waitering(glases);
+                    }
+                    while (glases.NumberOfGlasesOnShelf < 8 || PatronsInThePub > 0 || openBar == true);
+                    Dispatcher.Invoke(() =>
+                    {
+                        indexOrder++;
+                        WaitressListBox.Items.Insert(0, indexOrder + "_ Waitress goes home");
+                    });
                 });
             }
         }
-
 
         private void TakingCleanGlas(int obj)
         {
@@ -198,25 +213,22 @@ namespace Lab6Eget
                         BartenderListBox.Items.Insert(0, indexOrder + "_ Gives beer to " + T.patronName);
                         System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ Gives beer to " + T.patronName);
                     });
-                    // FindingEmptyChair?.Invoke(chairs, T, glases, ChairQueue);
-
                 }
             }
         }
-        private void PickingUpDirtyGlases(int glasInHand)
+
+        private void WritePickingUpDirtyGlases(int glasInHand)
         {
-            //if () {
             indexOrder++;
             Dispatcher.Invoke(() =>
             {
                 string text = $"{indexOrder} Waitress picks up {glasInHand}, glas(es).";
                 WaitressListBox.Items.Insert(0, text);
                 System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + text);
-
             });
-            // }
+
         }
-        private void LeavingGlasesOnShelf(int obj)
+        private void WriteLeavingGlasesOnShelf(int obj)
         {
             indexOrder++;
             Dispatcher.Invoke(() =>
@@ -226,7 +238,6 @@ namespace Lab6Eget
                 System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + text);
                 GlasLable.Content = $"Glas on the shelf: {glases.NumberOfGlasesOnShelf.ToString()}";
             });
-            // }
         }
     }
 }
