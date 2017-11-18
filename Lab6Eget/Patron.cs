@@ -43,8 +43,8 @@ namespace Lab6Eget
                     glases.NumberOfEmptyGlases++;
 
                     LeavingThePub?.Invoke(patron);
-
-                    if (oneCount == 0)
+//
+             /*       if (oneCount == 0)
                     {
                         oneCount++;
                         while (true)
@@ -52,8 +52,8 @@ namespace Lab6Eget
 
                             LookingForTable(chair, patron, glases, chairQueue);
                         }
-                    }
-
+                    }*/
+                    //
                 }
             }
 

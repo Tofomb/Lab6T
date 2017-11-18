@@ -59,30 +59,18 @@ namespace Lab6Eget
 
         public void BartenderInteraction(Patron patron)
         {
+            indexOrder++;
+            BartenderQueue.Enqueue(patron);
             Dispatcher.Invoke(() =>
             {
-                indexOrder++;
-                BartenderQueue.Enqueue(patron);
                 BartenderListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " orders a beer");
                 System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ " + patron.patronName + " orders a beer");
-
             });
 
-            //
-            ChairQueue.TryPeek(out Patron tester);
-
-            /*           if (tester != null)
-                       {
-                           do
-                           {*/
             ChairQueue.Enqueue(patron);
+
             FindingEmptyChair?.Invoke(chairs, patron, glases, ChairQueue);
-                    // patron.LookingForTable(chairs, patron, glases, ChairQueue);
-           /*     }
-                while (tester.patronName != patron.patronName);
-            }
-            else { ChairQueue.TryDequeue(out Patron skräp); }
-            */
+
         }
 
 
@@ -178,17 +166,19 @@ namespace Lab6Eget
                     bartender.Work();
                 }
             });
-
-            Task WorkingWaitress = Task.Run(() =>
+            if (openBar == false)
             {
                 Waitress waitress = new Waitress();
-                waitress.LeavingCleanGlas += LeavingGlasesOnShelf;
-                waitress.LookingForDirtyGlas += PickingUpDirtyGlases;
-                while (true)
+                Task WorkingWaitress = Task.Run(() =>
                 {
+                    waitress.LeavingCleanGlas += LeavingGlasesOnShelf;
+                    waitress.LookingForDirtyGlas += PickingUpDirtyGlases;
+                    //    while (true)
+                    //  {
                     waitress.Waitering(glases);
-                }
-            });
+                    //   }
+                });
+            }
         }
 
 
@@ -197,21 +187,18 @@ namespace Lab6Eget
 
             if (BartenderQueue.IsEmpty == false)
             {
-                //     if (glasOnShelf > 0)
                 if (glases.NumberOfGlasesOnShelf > 0)
                 {
+                    glases.NumberOfGlasesOnShelf--;
+                    indexOrder++;
+                    BartenderQueue.TryDequeue(out Patron T);
                     Dispatcher.Invoke(() =>
                     {
-                        glases.NumberOfGlasesOnShelf--;
-                        //glasOnShelf--;
-                        indexOrder++;
-                        BartenderQueue.TryDequeue(out Patron T);
-                        //  GlasLable.Content = $"Glas on the shelf: {glasOnShelf.ToString()}";
                         GlasLable.Content = $"Glas on the shelf: {glases.NumberOfGlasesOnShelf.ToString()}";
-
                         BartenderListBox.Items.Insert(0, indexOrder + "_ Gives beer to " + T.patronName);
                         System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ Gives beer to " + T.patronName);
                     });
+                    // FindingEmptyChair?.Invoke(chairs, T, glases, ChairQueue);
 
                 }
             }
