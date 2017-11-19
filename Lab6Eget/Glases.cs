@@ -13,7 +13,7 @@ namespace Lab6Eget
     {
         public int NumberOfGlasesOnShelf;
         public int NumberOfEmptyGlases;
-        public Glases(int inNumberOfGlasesOnShelf, int inNumberOfEmptyGlases)
+        public void SetGlases(int inNumberOfGlasesOnShelf, int inNumberOfEmptyGlases)
         {
             NumberOfGlasesOnShelf = inNumberOfGlasesOnShelf;
             NumberOfEmptyGlases = inNumberOfEmptyGlases;

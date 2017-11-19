@@ -9,6 +9,7 @@ namespace Lab6Eget
 
     public class Patron
     {
+        WaitingParameters wp = new WaitingParameters();
         public int oneCount = 0;
         Random random = new Random();
         public event Action<Patron> LeavingThePub;
@@ -23,7 +24,7 @@ namespace Lab6Eget
         }
         public void LookingForTable(Chairs chair, Patron patron, Glases glases, ConcurrentQueue<Patron> chairQueue)
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(wp.getTimeForPatronToGoToTheTable());
 
             // Denna är jobbig
             //chairQueue.Enqueue(patron);
@@ -34,12 +35,13 @@ namespace Lab6Eget
             {
                 if (chair.NumberOfEmptyChairs > 0 && patron.patronName == tester.patronName)
                 {
+                    Thread.Sleep(wp.getTimePourBeer());
                     chairQueue.TryDequeue(out Patron pong);
-                    int DrinkingTime = random.Next(10000, 20000);
+                    //int DrinkingTime = random.Next(10000, 20000);
                     chair.NumberOfEmptyChairs--;
                     DrinkingBeer?.Invoke(patron);
                     // drinks beer
-                    Thread.Sleep(DrinkingTime);
+                    Thread.Sleep(wp.getTimeToDrinkTheBeer());
                     glases.NumberOfEmptyGlases++;
 
                     LeavingThePub?.Invoke(patron);

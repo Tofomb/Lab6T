@@ -1,31 +1,3 @@
 1_ Worlds End Opens!
-2_ (1) Jonas arrives at the pub
-3_ (2) Anders arrives at the pub
+3_ (1) Jonas arrives at the pub
 4_ (1) Jonas orders a beer
-5_ (3) Johanna arrives at the pub
-6_ Gives beer to (1) Jonas
-7_ (4) Daniel arrives at the pub
-8_ (2) Anders orders a beer
-10_ (5) Beatrice arrives at the pub
-11_ (3) Johanna orders a beer
-12_ Gives beer to (2) Anders
-13_ (6) Erik arrives at the pub
-15_ (4) Daniel orders a beer
-17_ (5) Beatrice orders a beer
-18_ (6) Erik orders a beer
-19_ Gives beer to (3) Johanna
-21_ Gives beer to (4) Daniel
-23 Waitress picks up 1, glas(es).
-24_ Gives beer to (5) Beatrice
-25 Leaving Washed glas on shelf.
-27 Waitress picks up 1, glas(es).
-28_ Gives beer to (6) Erik
-33 Leaving Washed glas on shelf.
-34 Waitress picks up 1, glas(es).
-35 Leaving Washed glas on shelf.
-38 Waitress picks up 1, glas(es).
-39 Leaving Washed glas on shelf.
-41 Waitress picks up 1, glas(es).
-42 Leaving Washed glas on shelf.
-44 Waitress picks up 1, glas(es).
-45 Leaving Washed glas on shelf.

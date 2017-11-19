@@ -6,8 +6,10 @@ using System.Threading;
 
 namespace Lab6Eget
 {
+    
     public class Bartender
     {
+        WaitingParameters wp = new WaitingParameters();
         public event Action<int> LookingForCleanGlas;
         public void Work()
         {
@@ -16,7 +18,7 @@ namespace Lab6Eget
 
         private void LookingForGlas(int ob)
         {
-            Thread.Sleep(4000);
+            Thread.Sleep(wp.getTimeToFetchGlas());
             LookingForCleanGlas?.Invoke(0);
         }
     }

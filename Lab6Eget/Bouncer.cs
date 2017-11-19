@@ -11,6 +11,7 @@ namespace Lab6Eget
     public class Bouncer
     {
         MainWindow mw;
+        //public WaitingParameters WP = new WaitingParameters();
 
         public Bouncer(MainWindow mainwindow)
         {
@@ -49,18 +50,22 @@ namespace Lab6Eget
             {
                 personCount = 0;
             }
-            
+
             return "(" + HiddenCounter + ")" + " " + namn[index];
         }
 
-        public void Work()
+        public void Work(WaitingParameters wp)
         {
-            int checkingLeg = r.Next(3000, 10000);
-            Thread.Sleep(2000);
-            EnteringBar();
+            //   int checkingLeg = r.Next(3000, 10000);
+            Thread.Sleep(wp.getDelayToNextPatron());
+            int numberOFPatron = wp.getNumberOfPatrons();
+            for (int ii = 0; ii < numberOFPatron; ii++)
+            {
+                EnteringBar(wp);
+            }
         }
 
-        public void EnteringBar()
+        public void EnteringBar(WaitingParameters wp)
         {
 
             Patron patron = new Patron();
@@ -71,21 +76,12 @@ namespace Lab6Eget
             Arrival?.Invoke(patron.patronName);
             Task BeingPatron = Task.Run(() =>
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(wp.getTimeForPatronToGoToTheBar());
                 //
                 mw.FindingEmptyChair += patron.LookingForTable;
-               
-
                 //
                 patron.patronAct(patron);
-
-                
             });
-
-
-
         }
-
-
     }
 }

@@ -12,7 +12,7 @@ namespace Lab6Eget
     {
         
         public int NumberOfEmptyChairs;
-        public Chairs(int inNumberOfEmptyChairs)
+        public void SetChairs(int inNumberOfEmptyChairs)
         {
             NumberOfEmptyChairs = inNumberOfEmptyChairs;
            

@@ -9,6 +9,7 @@ namespace Lab6Eget
 
     public class Waitress
     {
+        WaitingParameters wp = new WaitingParameters();
         public event Action<int> LookingForDirtyGlas;
         public event Action<int> LeavingCleanGlas;
         public int NumberOfGlasesInTheHand = 0;
@@ -26,7 +27,7 @@ namespace Lab6Eget
                 }
 
                 LookingForDirtyGlas?.Invoke(NumberOfGlasesInTheHand);
-                Thread.Sleep(2000);
+                Thread.Sleep(wp.getTimeToCollectGlasses());
 
                 //   WaitingTable();
                 while (NumberOfGlasesInTheHand > 0)
@@ -35,7 +36,7 @@ namespace Lab6Eget
                     glases.NumberOfGlasesOnShelf++;
                 }
                 LeavingCleanGlas?.Invoke(0);
-                Thread.Sleep(2000);
+                Thread.Sleep(wp.getTimeToWashGlasses());
             }
         }
         public void WaitingTable()

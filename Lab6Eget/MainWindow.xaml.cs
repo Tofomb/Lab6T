@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Collections.Concurrent;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Lab6Eget
 {
@@ -26,23 +27,25 @@ namespace Lab6Eget
         //
         public event Action<Chairs, Patron, Glases, ConcurrentQueue<Patron>> FindingEmptyChair;
         //
-        Glases glases = new Glases(8, 0);
+        Stopwatch stopwatch = new Stopwatch();
+        public WaitingParameters WP = new WaitingParameters();
+        Glases glases = new Glases();
         public int indexOrder;
         public static CancellationTokenSource cts = new CancellationTokenSource();
         public CancellationToken ct = cts.Token;
-        Chairs chairs = new Chairs(3);
+        Chairs chairs = new Chairs();
         public int PatronsInThePub = 0;
         public bool openBar = false;
         public Patron guest = new Patron();
         public ConcurrentQueue<Patron> BartenderQueue = new ConcurrentQueue<Patron>();
         public ConcurrentQueue<Patron> ChairQueue = new ConcurrentQueue<Patron>();
-
-
+        
         public MainWindow()
 
         {
             InitializeComponent();
-            BartenderQueue.Enqueue(guest);
+           // BartenderQueue.Enqueue(guest);
+
         }
 
         public void PersonNameToPub(string namn)
@@ -101,15 +104,19 @@ namespace Lab6Eget
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            TimerDisplay.Text = Convert.ToString(DateTime.Now - start);
+            TimerDisplay.Text = Convert.ToString((DateTime.Now - start).Seconds);
         }
 
         private void LoadMainFrame(object sender, RoutedEventArgs e)
         {
+            chairs.SetChairs(WP.getNumberOfEmptyChairs());
+            glases.SetGlases(WP.getNumberOfGlassesOnTheShelf(), 0);
             GlasLable.Content = $"Glas on the shelf: {glases.NumberOfGlasesOnShelf.ToString()}";
             ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
             GuestLabel.Content = $"Guest in the pub: {PatronsInThePub.ToString()}";
             BartenderQueue.TryDequeue(out Patron m);
+            
+
         }
 
         private void OpeningBar(object sender, RoutedEventArgs e)
@@ -134,10 +141,15 @@ namespace Lab6Eget
                 {
 
                     bouncer.Arrival += PersonNameToPub;
-
-                    while (!ct.IsCancellationRequested)
+                    
+                    while (!ct.IsCancellationRequested && (DateTime.Now - start).Seconds < WP.getBarIsOpenFor()) 
                     {
-                        bouncer.Work();
+                        if (WP.checkIfCharterTripWillArrive() && (DateTime.Now - start).Seconds >= 20)
+                        {
+                            WP.charterTripArrives();
+                        };
+
+                        bouncer.Work(WP);
                     }
 
                     // When closing Bouncer
@@ -146,6 +158,20 @@ namespace Lab6Eget
                         indexOrder++;
                         BouncerListBox.Items.Insert(0, indexOrder + "_ Bouncer Goes Home.");
                     });
+                    cts.Cancel();  // cancel thread
+                    timer.IsEnabled = false;
+                    openBar = false;
+                    Dispatcher.Invoke(() =>
+                    {
+                        OpenBarButton.Content = "We are closed: Wait For Tomorrow";
+                        OpenBarButton.IsEnabled = false;
+                    });
+                    //  stopwatch.Start();
+
+                    // bouncer home clock
+                    DispatcherTimer bTimer = new DispatcherTimer();
+                    bTimer.IsEnabled = true;
+                    start = DateTime.Now;
                 });
             }
             else
@@ -153,8 +179,14 @@ namespace Lab6Eget
                 cts.Cancel();  // cancel thread
                 timer.IsEnabled = false;
                 openBar = false;
-                OpenBarButton.Content = "Open";
+                OpenBarButton.Content = "We are closed: Wait For Tomorrow";
                 OpenBarButton.IsEnabled = false;
+              //  stopwatch.Start();
+
+                // bouncer home clock
+                DispatcherTimer bTimer = new DispatcherTimer();
+                bTimer.IsEnabled = true;
+                start = DateTime.Now;
 
             }
             if (openBar == true)
@@ -162,12 +194,17 @@ namespace Lab6Eget
                 Bartender bartender = new Bartender();
                 Task working = Task.Run(() =>
                 {
+                    Dispatcher.Invoke(() => 
+                    {
+                        indexOrder++;
+                        BartenderListBox.Items.Insert(0, indexOrder + "_ Bartender waits for customers.");
+                    });
                     bartender.LookingForCleanGlas += TakingCleanGlas;
                     do
                     {
                         bartender.Work();
                     }
-                    while (!BartenderQueue.IsEmpty || openBar == true);
+                    while (!BartenderQueue.IsEmpty || openBar == true || (DateTime.Now - start).Seconds < WP.getPatronWalkingTime()/1000);
                     Dispatcher.Invoke(() =>
                     {
                         indexOrder++;
@@ -187,7 +224,7 @@ namespace Lab6Eget
                     {
                         waitress.Waitering(glases);
                     }
-                    while (glases.NumberOfGlasesOnShelf < 8 || PatronsInThePub > 0 || openBar == true);
+                    while (glases.NumberOfGlasesOnShelf < WP.getNumberOfGlassesOnTheShelf() || PatronsInThePub > 0 || openBar == true);
                     Dispatcher.Invoke(() =>
                     {
                         indexOrder++;
@@ -199,7 +236,6 @@ namespace Lab6Eget
 
         private void TakingCleanGlas(int obj)
         {
-
             if (BartenderQueue.IsEmpty == false)
             {
                 if (glases.NumberOfGlasesOnShelf > 0)
