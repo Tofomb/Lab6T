@@ -97,10 +97,13 @@ namespace Lab6Eget
             });
 
         }
-
+        //int clock = 0;
         private void timer_Tick(object sender, EventArgs e)
         {
-            TimerDisplay.Text = Convert.ToString((DateTime.Now - start).Seconds);
+            //clock++;
+           // TimerDisplay.Text = (clock/10000).ToString();
+            TimerDisplay.Text = Convert.ToString((DateTime.Now - start).TotalMinutes);
+
         }
 
         private void LoadMainFrame(object sender, RoutedEventArgs e)
@@ -111,6 +114,7 @@ namespace Lab6Eget
             ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
             GuestLabel.Content = $"Guest in the pub: {PatronsInThePub.ToString()}";
             BartenderQueue.TryDequeue(out Patron m);
+            TimerDisplay.Text = "Hej";
         }
 
         private void OpeningBar(object sender, RoutedEventArgs e)
@@ -124,19 +128,20 @@ namespace Lab6Eget
 
                 // clock
                 timer = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 0),
-                                            DispatcherPriority.Background,
-                                            timer_Tick, Dispatcher.CurrentDispatcher);
-                timer.IsEnabled = true;
-                start = DateTime.Now;
-                openBar = true;
-                OpenBarButton.Content = "Close";
+                                             DispatcherPriority.Background,
+                                             timer_Tick, Dispatcher.CurrentDispatcher);
+                 timer.IsEnabled = true;
+                 start = DateTime.Now;
+                 openBar = true;
+                 OpenBarButton.Content = "Close";
+
 
                 Task enter = Task.Run(() =>
                 {
 
                     bouncer.Arrival += PersonNameToPub;
 
-                    while (!ct.IsCancellationRequested && (DateTime.Now - start).Seconds < WP.getBarIsOpenFor())
+                    while (!ct.IsCancellationRequested && ( DateTime.Now - start).TotalMinutes < WP.getBarIsOpenFor())
                     {
                         if (WP.checkIfCharterTripWillArrive() && (DateTime.Now - start).Seconds >= 20)
                         {
@@ -162,7 +167,7 @@ namespace Lab6Eget
                     });
 
                     // bouncer home clock
-                    DispatcherTimer bTimer = new DispatcherTimer();
+                   DispatcherTimer bTimer = new DispatcherTimer();
                     bTimer.IsEnabled = true;
                     start = DateTime.Now;
                 });

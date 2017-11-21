@@ -2,7 +2,6 @@
 namespace Lab6Eget
 {
 
-
     // Class with all the parameters 
     // for all test cases
     public class WaitingParameters
@@ -12,10 +11,10 @@ namespace Lab6Eget
         // Default values
 
         // The bar is open for
-        int barIsOpenFor = 120; // 120 s
+        int barIsOpenFor = 120 /* 120 s */ / 60;
 
         int numberOfGlassesOnTheShelf = 8; // default 8
-        int numberOfEmptyChairs = 2; // default 9
+        int numberOfEmptyChairs = 9; // default 9
 
         // Patron values
         int minDelayBetweenPatrons = 3000;      //  3 seconds
@@ -30,16 +29,16 @@ namespace Lab6Eget
         int timetoWashGlasses = 15000;          // 15 seconds
 
         // Bartender Value
-        int fetchGlas = 3000;
-        int pouringBeer = 3000;
+        int fetchGlas = 3000;                   // 3 seconds
+        int pouringBeer = 3000;                 // 3 seconds
 
-        bool patronStaysInTheBarTwiceTheTime = false;
-        bool waitressWorksHarder = false;
+        bool patronStaysInTheBarTwiceTheTime = false; // false
+        bool waitressWorksHarder = false;       // false
 
-        bool couplesNight = true;
-        bool charterTripWillCome = false;
+        bool couplesNight = true;               // false
+        bool charterTripWillCome = false;       // false
 
-        //
+        // 
         bool charterTripHasArrived = false;
 
         // How long the bar is open
