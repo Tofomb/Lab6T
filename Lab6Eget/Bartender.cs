@@ -13,10 +13,10 @@ namespace Lab6Eget
         public event Action<int> LookingForCleanGlas;
         public void Work()
         {
-            LookingForGlas(0);
+            LookingForGlas();
         }
 
-        private void LookingForGlas(int ob)
+        private void LookingForGlas()
         {
             Thread.Sleep(wp.getTimeToFetchGlas());
             LookingForCleanGlas?.Invoke(0);

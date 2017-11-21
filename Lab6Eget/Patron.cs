@@ -33,14 +33,13 @@ namespace Lab6Eget
             {
                 if (chair.NumberOfEmptyChairs > 0 && patron.patronName == tester.patronName)
                 {
-                    Thread.Sleep(wp.getTimePourBeer());
                     chairQueue.TryDequeue(out Patron pong);
                     chair.NumberOfEmptyChairs--;
+                    Thread.Sleep(wp.getTimePourBeer());
                     DrinkingBeer?.Invoke(patron);
                     // drinks beer
                     Thread.Sleep(wp.getTimeToDrinkTheBeer());
                     glases.NumberOfEmptyGlases++;
-
                     LeavingThePub?.Invoke(patron);
                 }
 

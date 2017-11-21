@@ -66,10 +66,11 @@ namespace Lab6Eget
                 BartenderListBox.Items.Insert(0, indexOrder + "_ " + patron.patronName + " orders a beer");
                 System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ " + patron.patronName + " orders a beer");
             });
+            
+            //ChairQueue.Enqueue(patron);
 
-            ChairQueue.Enqueue(patron);
-
-            FindingEmptyChair?.Invoke(chairs, patron, glases, ChairQueue);
+            FindingEmptyChair?.Invoke(chairs, patron, glases, ChairQueue); 
+            
         }
 
 
@@ -102,7 +103,7 @@ namespace Lab6Eget
         {
             //clock++;
            // TimerDisplay.Text = (clock/10000).ToString();
-            TimerDisplay.Text = Convert.ToString((DateTime.Now - start).TotalMinutes);
+            TimerDisplay.Text = Convert.ToString((DateTime.Now - start));
 
         }
 
@@ -114,7 +115,7 @@ namespace Lab6Eget
             ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
             GuestLabel.Content = $"Guest in the pub: {PatronsInThePub.ToString()}";
             BartenderQueue.TryDequeue(out Patron m);
-            TimerDisplay.Text = "Hej";
+            TimerDisplay.Text = "Tid Som Bouncern Jobbar";
         }
 
         private void OpeningBar(object sender, RoutedEventArgs e)
@@ -247,6 +248,10 @@ namespace Lab6Eget
                         BartenderListBox.Items.Insert(0, indexOrder + "_ Gives beer to " + T.patronName);
                         System.IO.File.AppendAllText(@"WorldsEnd.txt", "\n" + indexOrder + "_ Gives beer to " + T.patronName);
                     });
+                    
+                    ChairQueue.Enqueue(T);
+                    // 
+                    //FindingEmptyChair?.Invoke(chairs, patron, glases, ChairQueue);
                 }
             }
         }

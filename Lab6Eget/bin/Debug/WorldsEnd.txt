@@ -4,110 +4,140 @@
 5_ (1) Jonas orders a beer
 6_ (2) Anders orders a beer
 7_ Gives beer to (1) Jonas
-8_ (3) Johanna arrives at the pub
-9_ (4) Daniel arrives at the pub
-10_ (3) Johanna orders a beer
-11_ (4) Daniel orders a beer
-12_ Gives beer to (2) Anders
-14_ Gives beer to (3) Johanna
-15_ (5) Beatrice arrives at the pub
-16_ (6) Erik arrives at the pub
-17_ (5) Beatrice orders a beer
-18_ Gives beer to (4) Daniel
-19_ (6) Erik orders a beer
-21_ (7) Klara arrives at the pub
-22_ (8) Michel arrives at the pub
+8_ Gives beer to (2) Anders
+9_ (3) Johanna arrives at the pub
+10_ (4) Daniel arrives at the pub
+12_ (3) Johanna orders a beer
+13_ Gives beer to (3) Johanna
+15_ (4) Daniel orders a beer
+16_ Gives beer to (4) Daniel
+17_ (5) Beatrice arrives at the pub
+18_ (6) Erik arrives at the pub
+19_ (5) Beatrice orders a beer
+21_ (6) Erik orders a beer
 23_ Gives beer to (5) Beatrice
-24_ (7) Klara orders a beer
-26_ (8) Michel orders a beer
-27_ Gives beer to (6) Erik
-29_ Gives beer to (7) Klara
-31 Waitress picks up 1, glas(es).
+24_ (7) Klara arrives at the pub
+25_ (8) Michel arrives at the pub
+27 Waitress picks up 1, glas(es).
+28_ (7) Klara orders a beer
+29_ (8) Michel orders a beer
+30_ Gives beer to (6) Erik
 32_ (9) David arrives at the pub
 33_ (10) Bosse arrives at the pub
-34_ Gives beer to (8) Michel
-36_ (9) David orders a beer
-36_ (10) Bosse orders a beer
-39_ (11) Konrad arrives at the pub
-40_ (12) Jonas arrives at the pub
-41_ (11) Konrad orders a beer
-44_ (12) Jonas orders a beer
-45 Leaving Washed glas on shelf.
-46_ Gives beer to (10) Bosse
-47_ (13) Anders arrives at the pub
-48_ (14) Johanna arrives at the pub
-50_ (13) Anders orders a beer
-51_ (14) Johanna orders a beer
-53_ (15) Daniel arrives at the pub
-54_ (16) Beatrice arrives at the pub
-56_ (15) Daniel orders a beer
-57_ (16) Beatrice orders a beer
-58_ (17) Erik arrives at the pub
-59_ (18) Klara arrives at the pub
-60_ (17) Erik orders a beer
-63_ (18) Klara orders a beer
-64_ (19) Michel arrives at the pub
-65_ (20) David arrives at the pub
-66 Waitress picks up 4, glas(es).
-69_ (19) Michel orders a beer
-70_ (20) David orders a beer
-72_ (21) Bosse arrives at the pub
-73_ (22) Konrad arrives at the pub
+34_ Gives beer to (7) Klara
+35_ (9) David orders a beer
+37_ (10) Bosse orders a beer
+38_ Gives beer to (8) Michel
+42_ (11) Konrad arrives at the pub
+43_ (12) Jonas arrives at the pub
+44 Leaving Washed glas on shelf.
+45_ (11) Konrad orders a beer
+46_ Gives beer to (9) David
+47_ (12) Jonas orders a beer
+50_ (13) Anders arrives at the pub
+51_ (14) Johanna arrives at the pub
+52_ (13) Anders orders a beer
+53_ (14) Johanna orders a beer
+55_ (15) Daniel arrives at the pub
+56_ (16) Beatrice arrives at the pub
+59_ (15) Daniel orders a beer
+60_ (16) Beatrice orders a beer
+61_ (17) Erik arrives at the pub
+62_ (18) Klara arrives at the pub
+63_ (17) Erik orders a beer
+65_ (18) Klara orders a beer
+66 Waitress picks up 6, glas(es).
+68_ (19) Michel arrives at the pub
+69_ (20) David arrives at the pub
+71_ (19) Michel orders a beer
+72_ (20) David orders a beer
+73_ (21) Bosse arrives at the pub
+74_ (22) Konrad arrives at the pub
 75_ (21) Bosse orders a beer
 76_ (22) Konrad orders a beer
-78 Leaving Washed glas on shelf.
-80_ Gives beer to (9) David
-81_ (23) Jonas arrives at the pub
-82_ (24) Anders arrives at the pub
+77 Leaving Washed glas on shelf.
+78_ Gives beer to (10) Bosse
+79_ Gives beer to (11) Konrad
+80_ (23) Jonas arrives at the pub
+81_ (24) Anders arrives at the pub
+82_ Gives beer to (12) Jonas
 83_ (23) Jonas orders a beer
-85_ (24) Anders orders a beer
-86_ Gives beer to (11) Konrad
-88_ Gives beer to (12) Jonas
-91_ (25) Johanna arrives at the pub
-92_ (26) Daniel arrives at the pub
-93_ (25) Johanna orders a beer
-95_ Gives beer to (13) Anders
-96_ (26) Daniel orders a beer
-98 Waitress picks up 6, glas(es).
-99_ (27) Beatrice arrives at the pub
-100_ (28) Erik arrives at the pub
+86_ (24) Anders orders a beer
+87_ Gives beer to (13) Anders
+89_ Gives beer to (14) Johanna
+90_ (25) Johanna arrives at the pub
+91_ (26) Daniel arrives at the pub
+92_ (25) Johanna orders a beer
+93_ (26) Daniel orders a beer
+95 Waitress picks up 2, glas(es).
+96_ Gives beer to (15) Daniel
+98_ (27) Beatrice arrives at the pub
+99_ (28) Erik arrives at the pub
 101_ (27) Beatrice orders a beer
-104_ (28) Erik orders a beer
-107 Leaving Washed glas on shelf.
-110_ (29) Klara arrives at the pub
-111_ (30) Michel arrives at the pub
-112_ Gives beer to (14) Johanna
-113_ (29) Klara orders a beer
-114_ (30) Michel orders a beer
-115_ Gives beer to (15) Daniel
-116_ (31) David arrives at the pub
-117_ (32) Bosse arrives at the pub
+102_ (28) Erik orders a beer
+104 Leaving Washed glas on shelf.
+106_ Gives beer to (16) Beatrice
+108_ (29) Klara arrives at the pub
+109_ (30) Michel arrives at the pub
+110_ (29) Klara orders a beer
+111_ (30) Michel orders a beer
+113_ Gives beer to (17) Erik
+118_ (31) David arrives at the pub
+119_ (32) Bosse arrives at the pub
 120_ (31) David orders a beer
 121_ (32) Bosse orders a beer
-122_ Gives beer to (16) Beatrice
-124_ Gives beer to (17) Erik
-125_ (33) Konrad arrives at the pub
-126_ (34) Jonas arrives at the pub
-127_ (33) Konrad orders a beer
-128_ Gives beer to (18) Klara
-130_ (34) Jonas orders a beer
-131 Waitress picks up 5, glas(es).
-133_ Gives beer to (19) Michel
-134_ (35) Anders arrives at the pub
-135_ (36) Johanna arrives at the pub
-137_ (35) Anders orders a beer
-138_ (36) Johanna orders a beer
-142_ (37) Daniel arrives at the pub
-143_ (38) Beatrice arrives at the pub
-144_ (37) Daniel orders a beer
-145 Leaving Washed glas on shelf.
-146_ Gives beer to (20) David
-147_ (38) Beatrice orders a beer
-149_ Gives beer to (21) Bosse
-151_ Gives beer to (22) Konrad
-152_ (39) Erik arrives at the pub
-153_ (40) Klara arrives at the pub
-156_ (39) Erik orders a beer
-157_ (40) Klara orders a beer
-159_ Gives beer to (23) Jonas
-161_ Gives beer to (24) Anders
+122 Waitress picks up 6, glas(es).
+123_ (33) Konrad arrives at the pub
+124_ (34) Jonas arrives at the pub
+125_ (33) Konrad orders a beer
+126_ (34) Jonas orders a beer
+127_ (35) Anders arrives at the pub
+128_ (36) Johanna arrives at the pub
+129 Leaving Washed glas on shelf.
+131_ (35) Anders orders a beer
+132_ (36) Johanna orders a beer
+133_ Gives beer to (18) Klara
+134_ (37) Daniel arrives at the pub
+135_ (38) Beatrice arrives at the pub
+136_ Gives beer to (19) Michel
+137_ (37) Daniel orders a beer
+139_ (38) Beatrice orders a beer
+141_ Gives beer to (20) David
+143_ Gives beer to (21) Bosse
+145_ Gives beer to (22) Konrad
+146_ (39) Erik arrives at the pub
+147_ (40) Klara arrives at the pub
+149_ (39) Erik orders a beer
+150_ (40) Klara orders a beer
+151 Waitress picks up 2, glas(es).
+152_ Gives beer to (23) Jonas
+156 Leaving Washed glas on shelf.
+158_ Gives beer to (24) Anders
+160_ Gives beer to (25) Johanna
+167 Waitress picks up 6, glas(es).
+170 Leaving Washed glas on shelf.
+171_ Gives beer to (26) Daniel
+172_ Gives beer to (27) Beatrice
+174_ Gives beer to (28) Erik
+176_ Gives beer to (29) Klara
+178_ Gives beer to (30) Michel
+179 Waitress picks up 2, glas(es).
+181_ Gives beer to (31) David
+186 Leaving Washed glas on shelf.
+187_ Gives beer to (32) Bosse
+189_ Gives beer to (33) Konrad
+194 Waitress picks up 5, glas(es).
+197 Leaving Washed glas on shelf.
+198_ Gives beer to (34) Jonas
+200_ Gives beer to (35) Anders
+201_ Gives beer to (36) Johanna
+204_ Gives beer to (37) Daniel
+206_ Gives beer to (38) Beatrice
+207 Waitress picks up 3, glas(es).
+212 Leaving Washed glas on shelf.
+214_ Gives beer to (39) Erik
+216_ Gives beer to (40) Klara
+221 Waitress picks up 5, glas(es).
+223 Leaving Washed glas on shelf.
+225 Waitress picks up 2, glas(es).
+226 Leaving Washed glas on shelf.
