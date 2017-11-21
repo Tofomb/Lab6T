@@ -15,7 +15,7 @@ namespace Lab6Eget
         int barIsOpenFor = 120; // 120 s
 
         int numberOfGlassesOnTheShelf = 8; // default 8
-        int numberOfEmptyChairs = 9; // default 9
+        int numberOfEmptyChairs = 2; // default 9
 
         // Patron values
         int minDelayBetweenPatrons = 3000;      //  3 seconds
@@ -36,8 +36,10 @@ namespace Lab6Eget
         bool patronStaysInTheBarTwiceTheTime = false;
         bool waitressWorksHarder = false;
 
-        bool couplesNight = false;
-        bool charterTripWillCome = true;
+        bool couplesNight = true;
+        bool charterTripWillCome = false;
+
+        //
         bool charterTripHasArrived = false;
 
         // How long the bar is open

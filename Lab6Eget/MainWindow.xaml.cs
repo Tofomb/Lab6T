@@ -27,7 +27,7 @@ namespace Lab6Eget
         //
         public event Action<Chairs, Patron, Glases, ConcurrentQueue<Patron>> FindingEmptyChair;
         //
-        Stopwatch stopwatch = new Stopwatch();
+        public Patron patron = new Patron();
         public WaitingParameters WP = new WaitingParameters();
         Glases glases = new Glases();
         public int indexOrder;
@@ -36,16 +36,13 @@ namespace Lab6Eget
         Chairs chairs = new Chairs();
         public int PatronsInThePub = 0;
         public bool openBar = false;
-        public Patron guest = new Patron();
         public ConcurrentQueue<Patron> BartenderQueue = new ConcurrentQueue<Patron>();
         public ConcurrentQueue<Patron> ChairQueue = new ConcurrentQueue<Patron>();
-        
+
         public MainWindow()
 
         {
             InitializeComponent();
-           // BartenderQueue.Enqueue(guest);
-
         }
 
         public void PersonNameToPub(string namn)
@@ -73,7 +70,6 @@ namespace Lab6Eget
             ChairQueue.Enqueue(patron);
 
             FindingEmptyChair?.Invoke(chairs, patron, glases, ChairQueue);
-
         }
 
 
@@ -115,8 +111,6 @@ namespace Lab6Eget
             ChairLabel.Content = $"Empty Chairs: {chairs.NumberOfEmptyChairs.ToString()}";
             GuestLabel.Content = $"Guest in the pub: {PatronsInThePub.ToString()}";
             BartenderQueue.TryDequeue(out Patron m);
-            
-
         }
 
         private void OpeningBar(object sender, RoutedEventArgs e)
@@ -141,8 +135,8 @@ namespace Lab6Eget
                 {
 
                     bouncer.Arrival += PersonNameToPub;
-                    
-                    while (!ct.IsCancellationRequested && (DateTime.Now - start).Seconds < WP.getBarIsOpenFor()) 
+
+                    while (!ct.IsCancellationRequested && (DateTime.Now - start).Seconds < WP.getBarIsOpenFor())
                     {
                         if (WP.checkIfCharterTripWillArrive() && (DateTime.Now - start).Seconds >= 20)
                         {
@@ -166,7 +160,6 @@ namespace Lab6Eget
                         OpenBarButton.Content = "We are closed: Wait For Tomorrow";
                         OpenBarButton.IsEnabled = false;
                     });
-                    //  stopwatch.Start();
 
                     // bouncer home clock
                     DispatcherTimer bTimer = new DispatcherTimer();
@@ -181,7 +174,6 @@ namespace Lab6Eget
                 openBar = false;
                 OpenBarButton.Content = "We are closed: Wait For Tomorrow";
                 OpenBarButton.IsEnabled = false;
-              //  stopwatch.Start();
 
                 // bouncer home clock
                 DispatcherTimer bTimer = new DispatcherTimer();
@@ -194,7 +186,7 @@ namespace Lab6Eget
                 Bartender bartender = new Bartender();
                 Task working = Task.Run(() =>
                 {
-                    Dispatcher.Invoke(() => 
+                    Dispatcher.Invoke(() =>
                     {
                         indexOrder++;
                         BartenderListBox.Items.Insert(0, indexOrder + "_ Bartender waits for customers.");
@@ -204,12 +196,13 @@ namespace Lab6Eget
                     {
                         bartender.Work();
                     }
-                    while (!BartenderQueue.IsEmpty || openBar == true || (DateTime.Now - start).Seconds < WP.getPatronWalkingTime()/1000);
+                    while (!BartenderQueue.IsEmpty || openBar == true || (DateTime.Now - start).Seconds < WP.getPatronWalkingTime() / 1000);
                     Dispatcher.Invoke(() =>
                     {
                         indexOrder++;
                         BartenderListBox.Items.Insert(0, indexOrder + "_ Bartender goes home");
                     });
+
                 });
             }
             if (openBar == true)

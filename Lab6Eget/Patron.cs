@@ -15,8 +15,8 @@ namespace Lab6Eget
         public event Action<Patron> LeavingThePub;
         public event Action<Patron> OrderABeer;
         public event Action<Patron> DrinkingBeer;
-        // public event Action<Patron> ChairQueueChecker;
         public string patronName { get; set; }
+        bool boolvalue = true;
 
         public void patronAct(Patron patron)
         {
@@ -26,10 +26,8 @@ namespace Lab6Eget
         {
             Thread.Sleep(wp.getTimeForPatronToGoToTheTable());
 
-            // Denna är jobbig
-            //chairQueue.Enqueue(patron);
-            //
             chairQueue.TryPeek(out Patron tester);
+
 
             if (tester != null)
             {
@@ -37,7 +35,6 @@ namespace Lab6Eget
                 {
                     Thread.Sleep(wp.getTimePourBeer());
                     chairQueue.TryDequeue(out Patron pong);
-                    //int DrinkingTime = random.Next(10000, 20000);
                     chair.NumberOfEmptyChairs--;
                     DrinkingBeer?.Invoke(patron);
                     // drinks beer
@@ -45,28 +42,16 @@ namespace Lab6Eget
                     glases.NumberOfEmptyGlases++;
 
                     LeavingThePub?.Invoke(patron);
-//
-             /*       if (oneCount == 0)
-                    {
-                        oneCount++;
-                        while (true)
-                        {
-
-                            LookingForTable(chair, patron, glases, chairQueue);
-                        }
-                    }*/
-                    //
                 }
+
             }
 
-            /*       else
-                   {
-
-                       Thread.Sleep(5000);
-                       LookingForTable(chair, patron, glases, chairQueue);
-
-                   }*/
-
+            if (boolvalue)
+                while (true)
+                {
+                    boolvalue = false;
+                    LookingForTable(chair, patron, glases, chairQueue);
+                }
 
         }
     }

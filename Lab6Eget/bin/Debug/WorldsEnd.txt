@@ -1,3 +1,57 @@
 1_ Worlds End Opens!
 3_ (1) Jonas arrives at the pub
-4_ (1) Jonas orders a beer
+4_ (2) Anders arrives at the pub
+5_ (1) Jonas orders a beer
+6_ (2) Anders orders a beer
+7_ Gives beer to (1) Jonas
+8_ Gives beer to (2) Anders
+10_ (3) Johanna arrives at the pub
+11_ (4) Daniel arrives at the pub
+12_ (3) Johanna orders a beer
+13_ (4) Daniel orders a beer
+14_ Gives beer to (3) Johanna
+16_ Gives beer to (4) Daniel
+17_ (5) Beatrice arrives at the pub
+18_ (6) Erik arrives at the pub
+19_ (5) Beatrice orders a beer
+20_ Gives beer to (5) Beatrice
+22 Waitress picks up 1, glas(es).
+23_ (6) Erik orders a beer
+24_ Gives beer to (6) Erik
+25_ (7) Klara arrives at the pub
+26_ (8) Michel arrives at the pub
+27_ (7) Klara orders a beer
+28_ Gives beer to (7) Klara
+29_ (8) Michel orders a beer
+31_ Gives beer to (8) Michel
+33 Leaving Washed glas on shelf.
+34_ (9) David arrives at the pub
+35_ (10) Bosse arrives at the pub
+36_ (9) David orders a beer
+37_ Gives beer to (9) David
+38_ (10) Bosse orders a beer
+39_ (11) Konrad arrives at the pub
+40_ (12) Jonas arrives at the pub
+41_ (11) Konrad orders a beer
+43_ (12) Jonas orders a beer
+45_ (13) Anders arrives at the pub
+46_ (14) Johanna arrives at the pub
+48_ (13) Anders orders a beer
+49_ (14) Johanna orders a beer
+50 Waitress picks up 2, glas(es).
+53 Leaving Washed glas on shelf.
+55_ Gives beer to (10) Bosse
+57_ Gives beer to (11) Konrad
+59 Waitress picks up 2, glas(es).
+63 Leaving Washed glas on shelf.
+65_ Gives beer to (12) Jonas
+66_ Gives beer to (13) Anders
+69 Waitress picks up 4, glas(es).
+71 Leaving Washed glas on shelf.
+73_ Gives beer to (14) Johanna
+77 Waitress picks up 1, glas(es).
+80 Leaving Washed glas on shelf.
+84 Waitress picks up 3, glas(es).
+86 Leaving Washed glas on shelf.
+87 Waitress picks up 1, glas(es).
+88 Leaving Washed glas on shelf.

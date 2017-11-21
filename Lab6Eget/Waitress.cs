@@ -16,8 +16,6 @@ namespace Lab6Eget
 
         public void Waitering(Glases glases)
         {
-
-
             if (glases.NumberOfEmptyGlases > 0)
             {
                 while (glases.NumberOfEmptyGlases > 0)
@@ -25,11 +23,8 @@ namespace Lab6Eget
                     glases.NumberOfEmptyGlases--;
                     NumberOfGlasesInTheHand++;
                 }
-
                 LookingForDirtyGlas?.Invoke(NumberOfGlasesInTheHand);
                 Thread.Sleep(wp.getTimeToCollectGlasses());
-
-                //   WaitingTable();
                 while (NumberOfGlasesInTheHand > 0)
                 {
                     NumberOfGlasesInTheHand--;

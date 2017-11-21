@@ -4,14 +4,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Concurrent;
 
 namespace Lab6Eget
 {
     public class Bouncer
     {
         MainWindow mw;
-        //public WaitingParameters WP = new WaitingParameters();
 
         public Bouncer(MainWindow mainwindow)
         {
@@ -19,10 +17,9 @@ namespace Lab6Eget
 
         }
 
-        //    public void Bouncer(MainWindow mainwindow) { }
+
         public event Action<string> Arrival;
         public event Action<Chairs, Patron, Glases, ConcurrentQueue<Patron>> FindingEmptyChair;
-        //    public event Action<Patron> OrderABear;
         public int personCount = 0;
         public int HiddenCounter;
         public Random r = new Random();
@@ -56,7 +53,6 @@ namespace Lab6Eget
 
         public void Work(WaitingParameters wp)
         {
-            //   int checkingLeg = r.Next(3000, 10000);
             Thread.Sleep(wp.getDelayToNextPatron());
             int numberOFPatron = wp.getNumberOfPatrons();
             for (int ii = 0; ii < numberOFPatron; ii++)
